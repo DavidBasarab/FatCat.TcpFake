@@ -1,6 +1,3 @@
-﻿namespace Tests.TcpFake;
+﻿namespace Tests.FatCat.TcpFake;
 
-public class Class1
-{
-
-}
+public class Class1 { }
