@@ -20,7 +20,8 @@ public static class Program
                 typeof(ToolkitWebApplication).Assembly
             ],
             OnWebApplicationStarted = Started,
-            Args = args
+            Args = args,
+            BasePath = "/api"
         };
 
         ToolkitWebApplication.Run(applicationSettings);
