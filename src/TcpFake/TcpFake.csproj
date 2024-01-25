@@ -12,7 +12,7 @@
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <NoWarn>CS8002,CS1700;IL2121;CS8618;IL2121;CS8603</NoWarn>
+        <NoWarn>CS8002,CS1700;IL2121;CS8618;IL2121;CS8603; 9113</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -21,12 +21,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CSharpier.MsBuild" Version="0.27.0">
+      <PackageReference Include="CSharpier.MsBuild" Version="0.27.1">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="FatCat.Toolkit" Version="1.0.195" />
-      <PackageReference Include="FatCat.Toolkit.WebServer" Version="1.0.24" />
+      <PackageReference Include="FatCat.Toolkit" Version="1.0.196" />
+      <PackageReference Include="FatCat.Toolkit.WebServer" Version="1.0.25" />
     </ItemGroup>
 
 </Project>

@@ -6,11 +6,11 @@ namespace FatCat.TcpFake;
 
 public class TestingEndpoint : Endpoint
 {
-	[HttpGet("test")]
-	public WebResult DoTest()
-	{
-		ConsoleLog.WriteDarkCyan("Hit test endpoint");
+    [HttpGet("test")]
+    public WebResult DoTest()
+    {
+        ConsoleLog.WriteDarkCyan("Hit test endpoint");
 
-		return Ok($"ACK | {DateTime.Now:h:mm:ss:fff tt}");
-	}
+        return Ok($"ACK | {DateTime.Now:h:mm:ss:fff tt}");
+    }
 }

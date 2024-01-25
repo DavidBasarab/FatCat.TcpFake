@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using FatCat.Toolkit.Communication;
 using FatCat.Toolkit.Console;
 using FatCat.Toolkit.Web.Api;
 using FatCat.Toolkit.WebServer;
@@ -17,6 +18,7 @@ public static class Program
             ContainerAssemblies =
             [
                 Assembly.GetExecutingAssembly(),
+                typeof(ITcpFactory).Assembly,
                 typeof(ToolkitWebApplication).Assembly
             ],
             OnWebApplicationStarted = Started,
