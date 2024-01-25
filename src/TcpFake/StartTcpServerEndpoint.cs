@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using FatCat.Toolkit.Caching;
 using FatCat.Toolkit.Communication;
 using FatCat.Toolkit.WebServer;
@@ -16,7 +17,7 @@ public class StartTcpServerEndpoint(
     {
         if (serverCache.InCache(request.Port.ToString()))
         {
-            return Ok();
+            return new WebResult(HttpStatusCode.AlreadyReported);
         }
 
         var server = tcpFactory.CreateOpenTcpServer();
@@ -27,6 +28,6 @@ public class StartTcpServerEndpoint(
 
         serverCache.Add(cacheItem);
 
-        return NotImplemented();
+        return Ok();
     }
 }

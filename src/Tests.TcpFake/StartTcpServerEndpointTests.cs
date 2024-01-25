@@ -1,10 +1,12 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using FakeItEasy;
 using FatCat.Fakes;
 using FatCat.TcpFake;
 using FatCat.Toolkit.Caching;
 using FatCat.Toolkit.Communication;
 using FatCat.Toolkit.WebServer.Testing;
+using FluentAssertions;
 using Xunit;
 
 namespace Tests.FatCat.TcpFake;
@@ -51,14 +53,30 @@ public class StartTcpServerEndpointTests
     }
 
     [Fact]
+    public void IfServerAlreadyInCacheReturnAlreadyReported()
+    {
+        SetServerInCache();
+
+        var response = endpoint.StartServer(serverRequest);
+
+        response.StatusCode.Should().Be(HttpStatusCode.AlreadyReported);
+    }
+
+    [Fact]
     public void IfServerPortAlreadyInCacheDoNotCreateOrStart()
     {
-        A.CallTo(() => cache.InCache(A<string>._)).Returns(true);
+        SetServerInCache();
 
         endpoint.StartServer(serverRequest);
 
         A.CallTo(() => tcpFactory.CreateOpenTcpServer()).MustNotHaveHappened();
         A.CallTo(() => cache.InCache(serverRequest.Port.ToString())).MustHaveHappened();
+    }
+
+    [Fact]
+    public void ReturnsOk()
+    {
+        endpoint.StartServer(serverRequest).Should().BeOk();
     }
 
     [Fact]
@@ -75,5 +93,10 @@ public class StartTcpServerEndpointTests
                     )
             )
             .MustHaveHappened();
+    }
+
+    private void SetServerInCache()
+    {
+        A.CallTo(() => cache.InCache(A<string>._)).Returns(true);
     }
 }
